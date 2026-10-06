@@ -245,7 +245,8 @@ const CATEGORIES = [
   {id:"entertainment", label:"Giải trí", e:"🎬"},
   {id:"other", label:"Khác", e:"📦"},
 ];
-const PAYERS = [{id:"sang",label:"Sang"},{id:"vo",label:"Vợ"},{id:"family",label:"Gia đình"}];
+// Tên hiển thị có thể đổi tự do; "id" phải giữ nguyên để dữ liệu cũ vẫn khớp.
+const PAYERS = [{id:"sang",label:"Bảo"},{id:"vo",label:"My Heo"},{id:"family",label:"Gia đình"}];
 const CAT = Object.fromEntries(CATEGORIES.map(c=>[c.id,c]));
 const PAY = Object.fromEntries(PAYERS.map(p=>[p.id,p]));
 const WEEKDAYS = ["Chủ nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"];
@@ -713,7 +714,7 @@ function renderSyncSection(){
   if(!cloudConfig()){
     return `<section class="card stack"><h2>Đồng bộ hai điện thoại</h2>
       ${inFrame?notice("info","📱","Bản xem thử không đồng bộ được","Đồng bộ chỉ chạy trên bản cài từ GitHub Pages. Ở đây dữ liệu chỉ nằm trong trình duyệt này."):
-      notice("info","📱","Chưa bật đồng bộ","Mỗi máy đang giữ sổ riêng: khoản chi nhập trên máy Sang không hiện trên máy Vợ. Làm theo README, phần “Bật đồng bộ”, để hai máy dùng chung một sổ.")}</section>`;
+      notice("info","📱","Chưa bật đồng bộ","Mỗi máy đang giữ sổ riêng: khoản chi nhập trên máy này không hiện trên máy kia. Làm theo README, phần “Bật đồng bộ”, để hai máy dùng chung một sổ.")}</section>`;
   }
   if(!cloud.api){
     return `<section class="card stack"><h2>Đồng bộ hai điện thoại</h2>${cloud.error?notice("","⚠️","Không bật được đồng bộ",esc(cloud.error)):`<div class="muted small">Đang tải thư viện đồng bộ…</div>`}</section>`;
