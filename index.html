@@ -57,6 +57,19 @@ button{cursor:pointer}
 .sync-chip.offline .d{background:var(--warn)} .sync-chip.offline{color:var(--warn)}
 .sync-chip.error .d{background:var(--danger)} .sync-chip.error{color:var(--danger)}
 .uid{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;word-break:break-all;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.flow .fv{font-family:var(--font-display);font-weight:700;font-size:clamp(17px,4.8vw,22px);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tx .ic.inc,.rec-row .ic.inc{background:var(--accent-soft);font-size:19px}
+.rec-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding:4px 0}
+.rec-row:last-child{border-bottom:0}
+.rec-main{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;border:0;background:transparent;text-align:left;padding:8px 4px;min-height:60px;min-width:0}
+.rec-main .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:19px;color:#fff}
+.rec-main .main{min-width:0}
+.rec-main .t1{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-main .t2{font-size:13px;color:var(--muted)}
+.rec-pay{min-height:44px;padding:0 14px;font-size:15px;border-color:var(--accent);color:var(--accent)}
+.rec-done{border:0;min-height:36px;cursor:pointer}
+.fixed-card{width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 .app{max-width:600px;margin:0 auto;padding-inline:16px;padding-block:12px calc(var(--tabbar) + 28px + env(safe-area-inset-bottom,0px))}
@@ -216,7 +229,7 @@ textarea.input{min-height:72px;resize:vertical}
     <button class="tab" data-tab="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Tổng quan</button>
     <button class="tab" data-tab="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg>Lịch sử</button>
     <button class="tab add" data-action="add" aria-label="Thêm khoản chi"><span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Thêm</button>
-    <button class="tab" data-tab="budget"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c0-1.2-1.3-2-3-2s-3 .8-3 2 1.3 1.8 3 2.2 3 1 3 2.3-1.3 2-3 2-3-.8-3-2"/></svg>Ngân sách</button>
+    <button class="tab" data-tab="budget"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c0-1.2-1.3-2-3-2s-3 .8-3 2 1.3 1.8 3 2.2 3 1 3 2.3-1.3 2-3 2-3-.8-3-2"/></svg>Kế hoạch</button>
     <button class="tab" data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Cài đặt</button>
   </div>
 </nav>
@@ -228,7 +241,7 @@ textarea.input{min-height:72px;resize:vertical}
 <script>
 "use strict";
 /* ================= Cấu hình ================= */
-const APP_VERSION = "2.0.0";
+const APP_VERSION = "2.1.0";
 const CLOUD_CACHE_KEY = "pocketspend.cloudcache";
 const STORE_KEY = "pocketspend.v1";
 const UNDO_KEY = "pocketspend.undo";
@@ -247,6 +260,14 @@ const CATEGORIES = [
 ];
 // Tên hiển thị có thể đổi tự do; "id" phải giữ nguyên để dữ liệu cũ vẫn khớp.
 const PAYERS = [{id:"sang",label:"Bảo"},{id:"vo",label:"My Heo"},{id:"family",label:"Gia đình"}];
+const INCOME_SOURCES = [
+  {id:"salary", label:"Lương", e:"💼"},
+  {id:"bonus", label:"Thưởng", e:"🎁"},
+  {id:"side", label:"Làm thêm", e:"🛠️"},
+  {id:"refund", label:"Hoàn tiền", e:"↩️"},
+  {id:"other", label:"Khác", e:"💵"},
+];
+const SRC = Object.fromEntries(INCOME_SOURCES.map(c=>[c.id,c]));
 const CAT = Object.fromEntries(CATEGORIES.map(c=>[c.id,c]));
 const PAY = Object.fromEntries(PAYERS.map(p=>[p.id,p]));
 const WEEKDAYS = ["Chủ nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"];
@@ -282,7 +303,7 @@ function shortDay(ds){const [,m,d]=ds.split("-").map(Number);return `${d}/${m}`}
 function isValidDate(ds){if(!/^\d{4}-\d{2}-\d{2}$/.test(ds))return false;const [y,m,d]=ds.split("-").map(Number);const t=new Date(y,m-1,d);return t.getFullYear()===y&&t.getMonth()===m-1&&t.getDate()===d}
 
 /* ================= Lưu trữ ================= */
-function emptyDB(){return {format:1, transactions:[], budgets:{}, lastBackupAt:null}}
+function emptyDB(){return {format:2, transactions:[], budgets:{}, income:[], recurring:[], lastBackupAt:null}}
 let storageOK = true;
 function loadDB(){
   try{
@@ -290,7 +311,7 @@ function loadDB(){
     if(!raw) return emptyDB();
     const parsed = JSON.parse(raw);
     const clean = sanitizeBackup(parsed);
-    return {...emptyDB(), transactions:clean.transactions, budgets:clean.budgets, lastBackupAt:parsed.lastBackupAt||null};
+    return {...emptyDB(), transactions:clean.transactions, budgets:clean.budgets, income:clean.income, recurring:clean.recurring, lastBackupAt:parsed.lastBackupAt||null};
   }catch(e){ storageOK = false; return emptyDB(); }
 }
 function saveDB(){
@@ -301,31 +322,61 @@ function loadPrefs(){try{return JSON.parse(localStorage.getItem(PREF_KEY))||{}}c
 function savePrefs(){try{localStorage.setItem(PREF_KEY,JSON.stringify(prefs))}catch(e){}}
 function uid(){ if(window.crypto&&crypto.randomUUID) return crypto.randomUUID(); return Date.now().toString(36)+Math.random().toString(36).slice(2,10); }
 
-// Kiểm tra và làm sạch dữ liệu từ file sao lưu (hoặc từ bộ nhớ)
+// Kiểm tra và làm sạch dữ liệu từ file sao lưu (hoặc từ bộ nhớ / máy chủ)
+const okAmount = a => Number.isInteger(a) && a>0 && a<=99999999999;
+const isoOr = v => typeof v==="string" && v.length<=40 ? v : new Date().toISOString();
+const shortStr = (v,n) => typeof v==="string" ? v.slice(0,n) : "";
+function cleanId(v, seen){ let id = typeof v==="string" && v.length && v.length<=64 ? v : uid(); if(seen.has(id)) id=uid(); seen.add(id); return id; }
+function sanTxList(arr, stat){
+  const out=[], seen=new Set();
+  for(const t of (Array.isArray(arr)?arr:[])){
+    if(!t || !okAmount(Number(t.amountCents)) || !isValidDate(String(t.date))){ if(stat) stat.skipped++; continue; }
+    const r={ id:cleanId(t.id,seen), amountCents:Number(t.amountCents), date:t.date,
+      category: CAT[t.category] ? t.category : "other", payer: PAY[t.payer] ? t.payer : "family",
+      note: shortStr(t.note,500), createdAt: isoOr(t.createdAt), updatedAt: isoOr(t.updatedAt) };
+    if(typeof t.fixedId==="string" && t.fixedId.length<=64) r.fixedId=t.fixedId;
+    out.push(r);
+  }
+  return out;
+}
+function sanIncList(arr, stat){
+  const out=[], seen=new Set();
+  for(const t of (Array.isArray(arr)?arr:[])){
+    if(!t || !okAmount(Number(t.amountCents)) || !isValidDate(String(t.date))){ if(stat) stat.skipped++; continue; }
+    const r={ id:cleanId(t.id,seen), amountCents:Number(t.amountCents), date:t.date,
+      source: SRC[t.source] ? t.source : "other", payer: PAY[t.payer] ? t.payer : "family",
+      note: shortStr(t.note,500), createdAt: isoOr(t.createdAt), updatedAt: isoOr(t.updatedAt) };
+    if(typeof t.fixedId==="string" && t.fixedId.length<=64) r.fixedId=t.fixedId;
+    out.push(r);
+  }
+  return out;
+}
+function sanRecList(arr){
+  const out=[], seen=new Set();
+  for(const t of (Array.isArray(arr)?arr:[])){
+    if(!t || !okAmount(Number(t.amountCents)) || typeof t.name!=="string" || !t.name.trim()) continue;
+    const kind = t.kind==="income" ? "income" : "expense";
+    const day = Math.min(31, Math.max(1, parseInt(t.day,10)||1));
+    out.push({ id:cleanId(t.id,seen), kind, name:t.name.trim().slice(0,60), amountCents:Number(t.amountCents),
+      category: kind==="expense" ? (CAT[t.category]?t.category:"bills") : undefined,
+      source: kind==="income" ? (SRC[t.source]?t.source:"salary") : undefined,
+      payer: PAY[t.payer] ? t.payer : "family", day,
+      startMonth: /^\d{4}-\d{2}$/.test(String(t.startMonth)) ? t.startMonth : "2000-01",
+      createdAt: isoOr(t.createdAt), updatedAt: isoOr(t.updatedAt) });
+  }
+  out.forEach(r=>{ if(r.category===undefined) delete r.category; if(r.source===undefined) delete r.source; });
+  return out;
+}
+function sanBudgets(obj){
+  const budgets={};
+  if(obj && typeof obj==="object") for(const [k,v] of Object.entries(obj)) if(/^\d{4}-\d{2}$/.test(k) && okAmount(v)) budgets[k]=v;
+  return budgets;
+}
 function sanitizeBackup(obj){
   if(!obj || typeof obj!=="object" || !Array.isArray(obj.transactions)) throw new Error("File không đúng định dạng sao lưu PocketSpend.");
-  const transactions=[]; let skipped=0; const seen=new Set();
-  for(const t of obj.transactions){
-    const amt = Number(t && t.amountCents);
-    if(!t || !Number.isInteger(amt) || amt<=0 || amt>99999999999 || !isValidDate(String(t.date))){skipped++;continue}
-    let id = typeof t.id==="string" && t.id.length<=64 ? t.id : uid();
-    if(seen.has(id)) id = uid(); seen.add(id);
-    transactions.push({
-      id, amountCents:amt, date:t.date,
-      category: CAT[t.category] ? t.category : "other",
-      payer: PAY[t.payer] ? t.payer : "family",
-      note: typeof t.note==="string" ? t.note.slice(0,500) : "",
-      createdAt: typeof t.createdAt==="string" ? t.createdAt : new Date().toISOString(),
-      updatedAt: typeof t.updatedAt==="string" ? t.updatedAt : new Date().toISOString(),
-    });
-  }
-  const budgets={};
-  if(obj.budgets && typeof obj.budgets==="object"){
-    for(const [k,v] of Object.entries(obj.budgets)){
-      if(/^\d{4}-\d{2}$/.test(k) && Number.isInteger(v) && v>0 && v<=99999999999) budgets[k]=v;
-    }
-  }
-  return {transactions, budgets, skipped};
+  const stat={skipped:0};
+  return { transactions:sanTxList(obj.transactions,stat), budgets:sanBudgets(obj.budgets),
+    income:sanIncList(obj.income,stat), recurring:sanRecList(obj.recurring), skipped:stat.skipped };
 }
 
 let db = loadDB();
@@ -336,6 +387,18 @@ try{ navigator.storage && navigator.storage.persist && navigator.storage.persist
 /* ================= Tính toán ================= */
 function sortTx(list){return list.slice().sort((a,b)=> b.date.localeCompare(a.date) || b.createdAt.localeCompare(a.createdAt))}
 function txInMonth(mk){return db.transactions.filter(t=>monthOf(t.date)===mk)}
+function incInMonth(mk){return db.income.filter(t=>monthOf(t.date)===mk)}
+function daysInMonth(mk){const [y,m]=mk.split("-").map(Number);return new Date(y,m,0).getDate()}
+function dueDate(mk,day){return `${mk}-${pad(Math.min(day,daysInMonth(mk)))}`}
+function recActive(r,mk){return r.startMonth<=mk}
+function recRecord(r,mk){const list=r.kind==="income"?db.income:db.transactions;return list.find(x=>x.fixedId===r.id&&monthOf(x.date)===mk)}
+function recurringStatus(kind,mk){
+  const items=db.recurring.filter(r=>r.kind===kind&&recActive(r,mk)).sort((a,b)=>a.day-b.day||a.name.localeCompare(b.name));
+  const rows=items.map(r=>({r, rec:recRecord(r,mk)}));
+  const total=sum(items); const done=rows.filter(x=>x.rec); const doneAmt=done.reduce((s,x)=>s+x.rec.amountCents,0);
+  const pending=rows.filter(x=>!x.rec); const pendingAmt=sum(pending.map(x=>x.r));
+  return {rows,total,doneCount:done.length,doneAmt,pendingCount:pending.length,pendingAmt};
+}
 function sum(list){return list.reduce((s,t)=>s+t.amountCents,0)}
 function byCategory(list){
   const m={}; for(const t of list) m[t.category]=(m[t.category]||0)+t.amountCents;
@@ -362,7 +425,8 @@ function cloudConfig(){
 }
 function cloudErrorText(err){
   const code = (err && err.code) || "";
-  if(code.includes("permission-denied")) return "Tài khoản này chưa được cấp quyền vào sổ chung. Kiểm tra UID trong Firestore Rules (xem README).";
+  if(code.includes("permission-denied") && err.where==="recurring") return "Firestore Rules chưa cập nhật cho khoản định kỳ. Dán Rules mới vào Firebase (xem hướng dẫn cập nhật).";
+  if(code.includes("permission-denied")) return "Tài khoản này chưa được cấp quyền vào sổ chung, hoặc Firestore Rules chưa cập nhật bản mới. Kiểm tra Rules (xem README).";
   if(code.includes("invalid-credential")||code.includes("wrong-password")||code.includes("user-not-found")||code.includes("invalid-email")) return "Email hoặc mật khẩu không đúng.";
   if(code.includes("too-many-requests")) return "Đăng nhập sai quá nhiều lần. Đợi vài phút rồi thử lại.";
   if(code.includes("network-request-failed")||code.includes("unavailable")) return "Không có kết nối mạng. Thử lại khi có mạng.";
@@ -375,34 +439,30 @@ function onCloudWriteError(err){
   toast(cloud.error, true); render();
 }
 function saveCloudCache(){
-  try{ localStorage.setItem(CLOUD_CACHE_KEY, JSON.stringify({uid:cloud.user&&cloud.user.uid, transactions:db.transactions, budgets:db.budgets})); }catch(e){}
+  try{ localStorage.setItem(CLOUD_CACHE_KEY, JSON.stringify({uid:cloud.user&&cloud.user.uid, transactions:db.transactions, budgets:db.budgets, income:db.income, recurring:db.recurring})); }catch(e){}
 }
 function loadCloudCache(uidv){
-  try{ const c=JSON.parse(localStorage.getItem(CLOUD_CACHE_KEY)); if(c&&c.uid===uidv){ const s=sanitizeBackup(c); return {...emptyDB(),transactions:s.transactions,budgets:s.budgets}; } }catch(e){}
+  try{ const c=JSON.parse(localStorage.getItem(CLOUD_CACHE_KEY)); if(c&&c.uid===uidv){ const s=sanitizeBackup(c); return {...emptyDB(),transactions:s.transactions,budgets:s.budgets,income:s.income,recurring:s.recurring}; } }catch(e){}
   return emptyDB();
 }
 function updateCloudStatus(){
   if(!cloud.active) return;
   if(cloud.status==="error") return;
-  const m=[cloud.meta.tx, cloud.meta.b];
+  const m=[cloud.meta.tx, cloud.meta.b, cloud.meta.r||{}];
   if(m.some(x=>x.pending)) cloud.status = m.some(x=>x.fromCache) ? "offline" : "pending";
   else if(m.some(x=>x.fromCache)) cloud.status = "offline";
   else { cloud.status="synced"; cloud.lastSyncAt=new Date(); }
 }
 function startCloud(user){
   cloud.user=user; cloud.active=true; cloud.status="connecting"; cloud.error=null;
-  cloud.txReady=false; cloud.budgetsReady=false; cloud.migrationAsked=false;
+  cloud.txReady=false; cloud.budgetsReady=false; cloud.migrationAsked=false; cloud.meta={tx:{},b:{}};
   db = loadCloudCache(user.uid);
   if(cloud.unsub) cloud.unsub();
   cloud.unsub = cloud.api.subscribe({
-    onTx(list, meta){
-      const s=sanitizeBackup({transactions:list}); db.transactions=s.transactions;
-      cloud.meta.tx=meta; cloud.txReady=true; afterSnapshot();
-    },
-    onBudgets(map, meta){
-      const s=sanitizeBackup({transactions:[], budgets:map}); db.budgets=s.budgets;
-      cloud.meta.b=meta; cloud.budgetsReady=true; afterSnapshot();
-    },
+    onTx(list, meta){ db.transactions=sanTxList(list); cloud.meta.tx=meta; cloud.txReady=true; afterSnapshot(); },
+    onBudgets(map, meta){ db.budgets=sanBudgets(map); cloud.meta.b=meta; cloud.budgetsReady=true; afterSnapshot(); },
+    onIncome(list, meta){ db.income=sanIncList(list); afterSnapshot(); },
+    onRecurring(list, meta){ db.recurring=sanRecList(list); cloud.meta.r=meta; afterSnapshot(); },
     onError(err){ cloud.status="error"; cloud.error=cloudErrorText(err); render(); },
   });
   render();
@@ -425,20 +485,34 @@ function rerenderKeepingEditor(){
   render();
 }
 function localBook(){ return loadDB(); } // sổ riêng trên máy (bản 1)
+function newItemsFrom(src){
+  // Những gì có trong src mà sổ hiện tại chưa có (so theo id); ngân sách chỉ lấy tháng chưa đặt
+  const has=(list)=>new Set(list.map(x=>x.id));
+  const t=has(db.transactions), i=has(db.income), r=has(db.recurring);
+  const budgets={}; for(const [k,v] of Object.entries(src.budgets||{})) if(!db.budgets[k]) budgets[k]=v;
+  return { transactions:(src.transactions||[]).filter(x=>!t.has(x.id)), income:(src.income||[]).filter(x=>!i.has(x.id)),
+    recurring:(src.recurring||[]).filter(x=>!r.has(x.id)), budgets };
+}
+function countNew(n){ return n.transactions.length+n.income.length+n.recurring.length+Object.keys(n.budgets).length; }
+function describeNew(n){
+  const parts=[];
+  if(n.transactions.length) parts.push(`<b>${n.transactions.length}</b> khoản chi`);
+  if(n.income.length) parts.push(`<b>${n.income.length}</b> khoản thu nhập`);
+  if(n.recurring.length) parts.push(`<b>${n.recurring.length}</b> khoản định kỳ`);
+  if(Object.keys(n.budgets).length) parts.push(`<b>${Object.keys(n.budgets).length}</b> tháng ngân sách`);
+  return parts.join(", ");
+}
 async function maybeAskMigration(manual=false){
   cloud.migrationAsked=true;
-  const local=localBook();
-  const ids=new Set(db.transactions.map(t=>t.id));
-  const newOnes=local.transactions.filter(t=>!ids.has(t.id));
-  const nb={}; for(const [k,v] of Object.entries(local.budgets)) if(!db.budgets[k]) nb[k]=v;
-  if(!newOnes.length && !Object.keys(nb).length){ if(manual) toast("Không có dữ liệu cũ nào cần chuyển"); prefs.migrated=true; savePrefs(); return; }
+  const n=newItemsFrom(localBook());
+  if(!countNew(n)){ if(manual) toast("Không có dữ liệu cũ nào cần chuyển"); prefs.migrated=true; savePrefs(); return; }
   if(prefs.migrationPrompted && !manual) return;
   prefs.migrationPrompted=true; savePrefs();
   const ok=await confirmDialog({title:"Chuyển dữ liệu cũ lên sổ chung?",
-    body:`<p>Máy này có <b>${newOnes.length}</b> khoản chi${Object.keys(nb).length?` và <b>${Object.keys(nb).length}</b> tháng ngân sách`:""} được nhập trước khi bật đồng bộ. Sổ chung hiện có <b>${db.transactions.length}</b> khoản.</p>
+    body:`<p>Máy này có ${describeNew(n)} được nhập trước khi bật đồng bộ. Sổ chung hiện có <b>${db.transactions.length}</b> khoản chi.</p>
       <p class="small muted">Chuyển lên thì cả hai máy đều thấy. Dữ liệu cũ trên máy vẫn được giữ nguyên làm bản dự phòng. Tháng nào sổ chung đã có ngân sách thì giữ ngân sách của sổ chung.</p>`,
     ok:"Chuyển lên", cancel:"Để sau"});
-  if(ok){ storeMergeAdd(newOnes, nb); prefs.migrated=true; savePrefs(); render(); toast(`Đã chuyển ${newOnes.length} khoản chi lên sổ chung`); }
+  if(ok){ storeMergeAdd(n); prefs.migrated=true; savePrefs(); render(); toast(`Đã chuyển ${n.transactions.length} khoản chi lên sổ chung`); }
 }
 function initCloud(){
   const cfg=cloudConfig(); const factory=window.__PS_FAKE_CLOUD || window.PocketCloud;
@@ -457,32 +531,45 @@ function loadCloudScript(){
 }
 
 /* ================= Ghi dữ liệu: một chỗ duy nhất cho cả sổ riêng và sổ chung ================= */
-function storePutTx(tx){
-  const i=db.transactions.findIndex(t=>t.id===tx.id);
-  if(i>=0) db.transactions[i]=tx; else db.transactions.push(tx);
-  if(cloud.active) cloud.api.putTx(tx, onCloudWriteError); else saveDB();
-}
-function storeDeleteTx(id){
-  db.transactions=db.transactions.filter(t=>t.id!==id);
-  if(cloud.active) cloud.api.deleteTx(id, onCloudWriteError); else saveDB();
-}
+// (storePutTx/storeDeleteTx giữ tên cũ cho khoản chi)
+function storePutTx(tx){ storePut("tx", tx); }
+function storeDeleteTx(id){ storeDelete("tx", id); }
 function storePutBudget(mk,c){ db.budgets[mk]=c; if(cloud.active) cloud.api.putBudget(mk,c,onCloudWriteError); else saveDB(); }
 function storeDeleteBudget(mk){ delete db.budgets[mk]; if(cloud.active) cloud.api.deleteBudget(mk,onCloudWriteError); else saveDB(); }
-function storeMergeAdd(txs, budgets){
-  const ids=new Set(db.transactions.map(t=>t.id)); const add=txs.filter(t=>!ids.has(t.id));
-  db.transactions=db.transactions.concat(add);
-  for(const [k,v] of Object.entries(budgets)) db.budgets[k]=v;
-  if(cloud.active) cloud.api.commit([...add.map(tx=>({type:"putTx",tx})), ...Object.entries(budgets).map(([month,cents])=>({type:"putBudget",month,cents}))], onCloudWriteError);
-  else saveDB();
+const KIND = { tx:{list:"transactions", put:"putTx", del:"delTx"}, inc:{list:"income", put:"putInc", del:"delInc"}, rec:{list:"recurring", put:"putRec", del:"delRec"} };
+function storePut(kind, item){
+  const L=KIND[kind].list; const i=db[L].findIndex(x=>x.id===item.id);
+  if(i>=0) db[L][i]=item; else db[L].push(item);
+  if(cloud.active) cloud.api.commit([{type:KIND[kind].put, item, tx:item}], onCloudWriteError); else saveDB();
 }
-function storeReplaceAll(txs, budgets){
+function storeDelete(kind, id){
+  const L=KIND[kind].list; db[L]=db[L].filter(x=>x.id!==id);
+  if(cloud.active) cloud.api.commit([{type:KIND[kind].del, id}], onCloudWriteError); else saveDB();
+}
+function opsFor(data){
+  return [...(data.transactions||[]).map(tx=>({type:"putTx",tx,item:tx})), ...(data.income||[]).map(item=>({type:"putInc",item})),
+    ...(data.recurring||[]).map(item=>({type:"putRec",item})), ...Object.entries(data.budgets||{}).map(([month,cents])=>({type:"putBudget",month,cents}))];
+}
+// Thêm các mục chưa có (dùng cho Gộp và Chuyển dữ liệu cũ)
+function storeMergeAdd(data){
+  const n={transactions:[],income:[],recurring:[],budgets:{},...data};
+  for(const k of ["transactions","income","recurring"]){ const ids=new Set(db[k].map(x=>x.id)); n[k]=n[k].filter(x=>!ids.has(x.id)); db[k]=db[k].concat(n[k]); }
+  for(const [k,v] of Object.entries(n.budgets)) db.budgets[k]=v;
+  if(cloud.active) cloud.api.commit(opsFor(n), onCloudWriteError); else saveDB();
+}
+// Thay toàn bộ sổ bằng data (dùng cho Thay thế, Hoàn tác, Xóa hết)
+function storeReplaceAll(data){
   const old=db;
-  db={...emptyDB(), transactions:txs.slice(), budgets:{...budgets}, lastBackupAt:old.lastBackupAt};
+  const nw={...emptyDB(), transactions:(data.transactions||[]).slice(), income:(data.income||[]).slice(), recurring:(data.recurring||[]).slice(), budgets:{...(data.budgets||{})}, lastBackupAt:old.lastBackupAt};
+  db=nw;
   if(cloud.active){
-    const keep=new Set(txs.map(t=>t.id));
-    const ops=[...old.transactions.filter(t=>!keep.has(t.id)).map(t=>({type:"delTx",id:t.id})),
-      ...Object.keys(old.budgets).filter(k=>!(k in budgets)).map(month=>({type:"delBudget",month})),
-      ...txs.map(tx=>({type:"putTx",tx})), ...Object.entries(budgets).map(([month,cents])=>({type:"putBudget",month,cents}))];
+    const keep=k=>new Set(nw[k].map(x=>x.id));
+    const kt=keep("transactions"), ki=keep("income"), kr=keep("recurring");
+    const ops=[...old.transactions.filter(x=>!kt.has(x.id)).map(x=>({type:"delTx",id:x.id})),
+      ...old.income.filter(x=>!ki.has(x.id)).map(x=>({type:"delInc",id:x.id})),
+      ...old.recurring.filter(x=>!kr.has(x.id)).map(x=>({type:"delRec",id:x.id})),
+      ...Object.keys(old.budgets).filter(k=>!(k in nw.budgets)).map(month=>({type:"delBudget",month})),
+      ...opsFor(nw)];
     cloud.api.commit(ops, onCloudWriteError);
   } else saveDB();
 }
@@ -492,6 +579,7 @@ const ui = {
   tab:"overview",
   month: monthOf(todayStr()),
   hist:{q:"", month:monthOf(todayStr()), cat:"all", payer:"all"},
+  planSeg:"income",
 };
 
 /* ================= Tiện ích HTML ================= */
@@ -513,6 +601,15 @@ function txRow(t, showDate=true){
     <span class="ic" style="background:${catColor(t.category)}" aria-hidden="true">${c.e}</span>
     <span class="main"><span class="t1" style="display:block">${esc(c.label)}</span><span class="t2" style="display:block">${sub}</span></span>
     <span class="amt num">${fmt(t.amountCents)}</span>
+  </button>`;
+}
+function incRow(t, showDate=true){
+  const c=SRC[t.source];
+  const sub=[showDate?shortDay(t.date):null, PAY[t.payer].label, t.note?esc(t.note):null].filter(Boolean).join(" · ");
+  return `<button class="tx" data-action="editInc" data-id="${esc(t.id)}">
+    <span class="ic inc" aria-hidden="true">${c.e}</span>
+    <span class="main"><span class="t1" style="display:block">${esc(c.label)}</span><span class="t2" style="display:block">${sub}</span></span>
+    <span class="amt num" style="color:var(--ok)">+${fmt(t.amountCents)}</span>
   </button>`;
 }
 function statusPill(st){
@@ -538,7 +635,7 @@ function renderOverview(){
   let budgetBlock;
   if(st.level==="none"){
     budgetBlock = `<div class="row between wrap"><div><div class="eyebrow">Ngân sách ${monthLabel(mk).toLowerCase()}</div><div class="muted small">Chưa đặt ngân sách cho tháng này.</div></div>
-      <button class="btn" data-action="goto" data-tab="budget">Đặt ngân sách</button></div>`;
+      <button class="btn" data-action="goto" data-tab="budget" data-seg="budget">Đặt ngân sách</button></div>`;
   } else {
     budgetBlock = `<div class="row between wrap"><div class="eyebrow">Ngân sách ${monthLabel(mk).toLowerCase()}</div>${statusPill(st)}</div>
       ${progressBar(st)}
@@ -560,6 +657,8 @@ function renderOverview(){
       <div class="card stat"><div class="eyebrow">${st.level==="over"?"Vượt ngân sách":"Còn lại"}</div><div class="value num" style="color:${st.level==="over"?"var(--danger)":st.level==="none"?"var(--muted)":"var(--ok)"}">${st.level==="none"?"—":fmt(Math.abs(st.remaining))}</div></div>
     </section>
     <button class="btn primary lg block" data-action="add"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Thêm khoản chi</button>
+    ${cashflowCard(mk)}
+    ${fixedCard(mk)}
     <section class="card stack">${budgetBlock}</section>
     <section class="card stack">
       <h2>Chi theo danh mục</h2>
@@ -576,6 +675,28 @@ function renderOverview(){
       `<div class="empty"><div class="big" aria-hidden="true">🪙</div><div><b>Sổ chi tiêu đang trống</b></div><div class="small">Bấm “Thêm khoản chi” để ghi khoản đầu tiên.</div></div>`}
     </section>
   </div>`;
+}
+
+function cashflowCard(mk){
+  const inc=sum(incInMonth(mk)), out=sum(txInMonth(mk)), net=inc-out;
+  return `<section class="card stack">
+    <div class="row between"><h2>Thu và chi ${monthLabel(mk).toLowerCase()}</h2><button class="link" data-action="goto" data-tab="budget" data-seg="income">Thu nhập</button></div>
+    <div class="flow">
+      <div><div class="eyebrow">Thu nhập</div><div class="fv num" style="color:var(--ok)">${fmt(inc)}</div></div>
+      <div><div class="eyebrow">Đã chi</div><div class="fv num">${fmt(out)}</div></div>
+      <div><div class="eyebrow">${net<0?"Chi vượt thu":"Còn dư"}</div><div class="fv num" style="color:${net<0?"var(--danger)":"var(--ink)"}">${fmt(Math.abs(net))}</div></div>
+    </div>
+    ${inc===0?`<div class="small muted">Chưa ghi thu nhập tháng này. Vào Kế hoạch → Thu nhập để thêm lương.</div>`:""}
+  </section>`;
+}
+function fixedCard(mk){
+  const f=recurringStatus("expense",mk); if(!f.rows.length) return "";
+  const cur=mk===monthOf(todayStr()); const today=Number(todayStr().slice(8));
+  const late=cur?f.rows.filter(x=>!x.rec&&x.r.day<today).length:0;
+  return `<button class="card stack fixed-card" data-action="goto" data-tab="budget" data-seg="fixed">
+    <div class="row between wrap"><h2>Chi cố định</h2>${f.pendingCount?`<span class="pill ${late?"over":"warn"}">${late?`${late} quá hạn`:`${f.pendingCount} chưa trả`}</span>`:`<span class="pill">Đã trả hết</span>`}</div>
+    <div class="row between small muted num"><span>Đã trả ${f.doneCount}/${f.rows.length} · ${fmt(f.doneAmt)}</span><span>Còn ${fmt(f.pendingAmt)}</span></div>
+  </button>`;
 }
 
 /* ================= Màn hình: Lịch sử ================= */
@@ -630,12 +751,75 @@ function renderHistory(){
   </div>`;
 }
 
-/* ================= Màn hình: Ngân sách ================= */
-function renderBudget(){
-  const mk=ui.month; const st=budgetStatus(mk); const prev=db.budgets[shiftMonth(mk,-1)];
+/* ================= Màn hình: Kế hoạch (Thu nhập · Chi cố định · Ngân sách) ================= */
+function renderPlan(){
+  const mk=ui.month; const seg=ui.planSeg;
+  const segs=[["income","Thu nhập"],["fixed","Chi cố định"],["budget","Ngân sách"]];
+  return `
+  <div class="row between wrap" style="margin-bottom:14px"><h1 class="view-title" style="margin:0">Kế hoạch</h1>${monthNav(mk,"month")}</div>
+  <div class="seg" role="tablist" aria-label="Mục kế hoạch" style="margin-bottom:14px">
+    ${segs.map(([id,l])=>`<button role="tab" data-action="planSeg" data-seg="${id}" aria-pressed="${seg===id}" aria-selected="${seg===id}">${l}</button>`).join("")}
+  </div>
+  ${seg==="income"?renderIncomeSeg(mk):seg==="fixed"?renderFixedSeg(mk):renderBudgetSeg(mk)}`;
+}
+function recRows(kind, mk){
+  const f=recurringStatus(kind,mk); const cur=mk===monthOf(todayStr()); const today=Number(todayStr().slice(8));
+  const verb=kind==="income"?"Đã nhận":"Đã trả";
+  if(!f.rows.length) return {f, html:`<div class="empty small">${kind==="income"?"Chưa có thu nhập định kỳ. Thêm lương để mỗi tháng chỉ cần bấm “Đã nhận”.":"Chưa có khoản cố định. Thêm mortgage, bảo hiểm, tiền xe… để theo dõi đã trả hay chưa."}</div>`};
+  return {f, html:`<div class="tx-list">${f.rows.map(({r,rec})=>{
+    const icon=kind==="income"?SRC[r.source].e:CAT[r.category].e;
+    const late=!rec&&cur&&r.day<today;
+    return `<div class="rec-row">
+      <button class="rec-main" data-action="editRec" data-id="${esc(r.id)}">
+        <span class="ic ${kind==="income"?"inc":""}" style="${kind==="income"?"":`background:${catColor(r.category)}`}" aria-hidden="true">${icon}</span>
+        <span class="main"><span class="t1" style="display:block">${esc(r.name)}</span>
+          <span class="t2" style="display:block">Ngày ${r.day} · ${esc(PAY[r.payer].label)} · ${fmt(r.amountCents)}${late?` · <b style="color:var(--danger)">Quá hạn</b>`:""}</span></span>
+      </button>
+      ${rec?`<button class="pill rec-done" data-action="${kind==="income"?"editInc":"edit"}" data-id="${esc(rec.id)}" aria-label="${verb} ${esc(r.name)}, bấm để xem hoặc sửa">✓ ${verb} ${shortDay(rec.date)}</button>`
+           :`<button class="btn rec-pay" data-action="markRec" data-id="${esc(r.id)}">${verb}</button>`}
+    </div>`}).join("")}</div>`};
+}
+function renderIncomeSeg(mk){
+  const list=incInMonth(mk).sort((a,b)=>b.date.localeCompare(a.date)||b.createdAt.localeCompare(a.createdAt));
+  const total=sum(list); const {f,html}=recRows("income",mk);
+  const byP=PAYERS.map(p=>({p,c:sum(list.filter(t=>t.payer===p.id))})).filter(x=>x.c);
+  return `<div class="stack">
+    <section class="card stat"><div class="eyebrow">Tổng thu nhập ${monthLabel(mk).toLowerCase()}</div><div class="value num" style="color:var(--ok)">${fmt(total)}</div>
+      ${byP.length?`<div class="small muted">${byP.map(x=>`${esc(x.p.label)} ${fmt(x.c)}`).join(" · ")}</div>`:""}</section>
+    <button class="btn primary lg block" data-action="addInc">+ Thêm thu nhập</button>
+    <section class="card stack">
+      <div class="row between"><h2>Thu nhập định kỳ</h2><button class="link" data-action="addRec" data-kind="income">+ Thêm</button></div>
+      ${f.pendingCount?`<div class="small muted">Chưa nhận ${f.pendingCount} khoản · ${fmt(f.pendingAmt)}</div>`:""}
+      ${html}
+    </section>
+    <section class="card">
+      <h2 style="margin-bottom:4px">Đã nhận trong tháng</h2>
+      ${list.length?`<div class="tx-list">${list.map(t=>incRow(t)).join("")}</div>`:`<div class="empty small">Chưa có khoản thu nhập nào trong ${monthLabel(mk).toLowerCase()}.</div>`}
+    </section>
+  </div>`;
+}
+function renderFixedSeg(mk){
+  const {f,html}=recRows("expense",mk);
+  return `<div class="stack">
+    <section class="card stack">
+      <div class="row between wrap"><div class="eyebrow">Chi cố định mỗi tháng</div>${f.rows.length?`<b class="num">${fmt(f.total)}</b>`:""}</div>
+      ${f.rows.length?`<div class="flow">
+        <div><div class="eyebrow">Đã trả</div><div class="fv num">${f.doneCount}/${f.rows.length}</div></div>
+        <div><div class="eyebrow">Số tiền đã trả</div><div class="fv num">${fmt(f.doneAmt)}</div></div>
+        <div><div class="eyebrow">Còn phải trả</div><div class="fv num" style="color:${f.pendingAmt?"var(--warn)":"var(--ok)"}">${fmt(f.pendingAmt)}</div></div></div>`:""}
+      <div class="small muted">Bấm “Đã trả” để ghi khoản đó vào sổ chi tiêu tháng này. Số tiền thay đổi (như tiền điện) thì bấm vào dấu ✓ để sửa.</div>
+    </section>
+    <section class="card stack">
+      <div class="row between"><h2>Danh sách</h2><button class="link" data-action="addRec" data-kind="expense">+ Thêm khoản cố định</button></div>
+      ${html}
+      ${f.pendingCount>1?`<button class="btn block" data-action="markAllRec">Ghi tất cả ${f.pendingCount} khoản chưa trả (${fmt(f.pendingAmt)})</button>`:""}
+    </section>
+  </div>`;
+}
+function renderBudgetSeg(mk){
+  const st=budgetStatus(mk); const prev=db.budgets[shiftMonth(mk,-1)];
   const rows=Object.keys(db.budgets).sort().reverse().slice(0,12);
   return `
-  <div class="row between wrap" style="margin-bottom:14px"><h1 class="view-title" style="margin:0">Ngân sách</h1>${monthNav(mk,"month")}</div>
   <div class="stack">
     <section class="card stack">
       <div class="row between wrap"><h2>${monthLabel(mk)}</h2>${statusPill(st)}</div>
@@ -685,6 +869,8 @@ function renderSettings(){
       <h2>Dữ liệu và sao lưu</h2>
       <div>
         <div class="kv"><span>Số khoản chi đã lưu</span><b class="num">${n}</b></div>
+        <div class="kv"><span>Số khoản thu nhập</span><b class="num">${db.income.length}</b></div>
+        <div class="kv"><span>Khoản định kỳ (cố định, lương)</span><b class="num">${db.recurring.length}</b></div>
         <div class="kv"><span>Số tháng có ngân sách</span><b class="num">${Object.keys(db.budgets).length}</b></div>
         <div class="kv"><span>Sao lưu gần nhất</span><b>${last?`${last.getDate()}/${last.getMonth()+1}/${last.getFullYear()}`:"Chưa có"}</b></div>
       </div>
@@ -699,11 +885,12 @@ function renderSettings(){
       <div class="small muted">File CSV mở được bằng Excel hoặc Google Sheets. Số tiền ghi bằng USD.</div>
       <button class="btn block" data-action="exportCSV" data-scope="month">CSV ${monthLabel(ui.month).toLowerCase()}</button>
       <button class="btn block" data-action="exportCSV" data-scope="all">CSV tất cả khoản chi</button>
+      <button class="btn block" data-action="exportIncomeCSV">CSV tất cả thu nhập</button>
     </section>
 
     <section class="card stack">
       <h2>Vùng nguy hiểm</h2>
-      <button class="btn danger block" data-action="wipe" ${n||Object.keys(db.budgets).length?"":"disabled"}>${cloud.active?"Xóa toàn bộ sổ chung":"Xóa toàn bộ dữ liệu trên máy này"}</button>
+      <button class="btn danger block" data-action="wipe" ${n||db.income.length||db.recurring.length||Object.keys(db.budgets).length?"":"disabled"}>${cloud.active?"Xóa toàn bộ sổ chung":"Xóa toàn bộ dữ liệu trên máy này"}</button>
     </section>
     <p class="small muted" style="text-align:center">PocketSpend ${APP_VERSION} · Tiền tệ: USD</p>
   </div>`;
@@ -751,13 +938,13 @@ function renderSyncSection(){
 /* ================= Render chung ================= */
 function render(){
   const v=$("#view");
-  const map={overview:renderOverview, history:renderHistory, budget:renderBudget, settings:renderSettings};
+  const map={overview:renderOverview, history:renderHistory, budget:renderPlan, settings:renderSettings};
   v.innerHTML = map[ui.tab]();
   document.querySelectorAll(".tab[data-tab]").forEach(b=>b.toggleAttribute("aria-current",false));
   const active=document.querySelector(`.tab[data-tab="${ui.tab}"]`); if(active) active.setAttribute("aria-current","page");
   updateTopStatus();
   if(ui.tab==="history") bindHistory();
-  if(ui.tab==="budget") bindBudget();
+  if(ui.tab==="budget" && ui.planSeg==="budget") bindBudget();
   if(ui.tab==="settings") bindLogin();
 }
 const SYNC_LABEL={synced:"Đã đồng bộ", pending:"Đang gửi…", offline:"Mất mạng", connecting:"Đang kết nối…", error:"Lỗi đồng bộ"};
@@ -889,6 +1076,115 @@ function openEditor(id=null){
   function close(){ wrap.remove(); document.body.style.overflow=""; }
 }
 
+/* ================= Bảng thêm / sửa thu nhập ================= */
+function sheetShell(title, inner){
+  const wrap=document.createElement("div"); wrap.className="overlay"; wrap.id="editor";
+  wrap.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="edT">
+    <div class="sheet-head"><button class="link" data-ed="cancel">Hủy</button><h2 id="edT">${title}</h2><button class="link" data-ed="save">Lưu</button></div>
+    <form id="edForm" class="stack" novalidate>${inner}</form></div>`;
+  $("#layer").appendChild(wrap); document.body.style.overflow="hidden";
+  return wrap;
+}
+function payerSeg(sel){ return `<div class="seg" role="group" aria-label="Người">${PAYERS.map(p=>`<button type="button" data-payer="${p.id}" aria-pressed="${sel===p.id}">${esc(p.label)}</button>`).join("")}</div>`; }
+function srcChips(sel){ return `<div class="chips" role="group" aria-label="Nguồn thu">${INCOME_SOURCES.map(c=>`<button type="button" class="chip" data-src="${c.id}" aria-pressed="${sel===c.id}"><span class="e" aria-hidden="true">${c.e}</span>${esc(c.label)}</button>`).join("")}</div>`; }
+function catChips(sel){ return `<div class="chips" role="group" aria-label="Danh mục">${CATEGORIES.map(c=>`<button type="button" class="chip" data-cat="${c.id}" aria-pressed="${sel===c.id}"><span class="e" aria-hidden="true">${c.e}</span>${esc(c.label)}</button>`).join("")}</div>`; }
+function bindPick(wrap, st){
+  wrap.addEventListener("click",e=>{
+    const pick=(attr,key)=>{ const b=e.target.closest(`[data-${attr}]`); if(!b) return false; st[key]=b.dataset[attr]; wrap.querySelectorAll(`[data-${attr}]`).forEach(x=>x.setAttribute("aria-pressed",x===b)); const er=$(`#edErr_${key}`,wrap); if(er) er.textContent=""; return true; };
+    pick("cat","category")||pick("src","source")||pick("payer","payer");
+  });
+}
+function openIncomeEditor(id=null){
+  const existing = id ? db.income.find(t=>t.id===id) : null;
+  if(id && !existing){toast("Không tìm thấy khoản thu nhập này.");return}
+  const st = existing ? {...existing} : {date:todayStr(), source:"salary", payer:prefs.defaultPayer, note:""};
+  const wrap=sheetShell(existing?"Sửa thu nhập":"Thêm thu nhập", `
+    <div class="money-input"><span>$</span><input id="edAmount" inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Số tiền (USD)" value="${existing?centsToPlain(existing.amountCents):""}"></div>
+    <div class="err" id="edErrAmt"></div>
+    <div class="stack" style="gap:8px"><div class="eyebrow">Nguồn thu</div>${srcChips(st.source)}</div>
+    <div class="stack" style="gap:8px"><div class="eyebrow">Người nhận</div>${payerSeg(st.payer)}</div>
+    <label class="field">Ngày<input class="input" type="date" id="edDate" value="${st.date}" max="2100-12-31"></label>
+    <div class="err" id="edErrDate"></div>
+    <label class="field">Ghi chú<input class="input" id="edNote" maxlength="500" autocomplete="off" placeholder="vd: Lương kỳ 1, Axiom…" value="${esc(st.note)}"></label>
+    <button class="btn primary lg block" type="submit">${existing?"Lưu thay đổi":"Lưu thu nhập"}</button>
+    ${existing?`<button class="btn danger block" type="button" data-ed="delete">Xóa khoản thu nhập này</button>`:""}`);
+  bindPick(wrap, st);
+  const amt=$("#edAmount",wrap); if(!existing) setTimeout(()=>amt.focus(),80);
+  const close=()=>{ wrap.remove(); document.body.style.overflow=""; };
+  const submit=()=>{
+    const c=parseCents(amt.value), d=$("#edDate",wrap).value;
+    $("#edErrAmt",wrap).textContent=c===null?"Nhập số tiền lớn hơn 0, ví dụ 3200.00.":"";
+    $("#edErrDate",wrap).textContent=!isValidDate(d)?"Chọn ngày hợp lệ.":"";
+    if(c===null||!isValidDate(d)) return;
+    const now=new Date().toISOString(); const note=$("#edNote",wrap).value.trim().slice(0,500);
+    if(existing){ const cur=db.income.find(t=>t.id===existing.id); if(!cur){toast("Khoản này vừa bị xóa trên máy khác.",true);close();render();return}
+      storePut("inc",{...cur,amountCents:c,date:d,source:st.source,payer:st.payer,note,updatedAt:now}); }
+    else storePut("inc",{id:uid(),amountCents:c,date:d,source:st.source,payer:st.payer,note,createdAt:now,updatedAt:now});
+    toast(existing?"Đã lưu thay đổi":`Đã thêm thu nhập ${fmt(c)}`); close(); render();
+  };
+  wrap.addEventListener("click",async e=>{
+    if(e.target===wrap) return close();
+    const a=e.target.closest("[data-ed]"); if(!a) return;
+    if(a.dataset.ed==="cancel") close(); else if(a.dataset.ed==="save") submit();
+    else if(a.dataset.ed==="delete"){
+      if(await confirmDialog({title:"Xóa thu nhập?", body:`<p><b class="num">${fmt(existing.amountCents)}</b> · ${esc(SRC[existing.source].label)} · ${dayLabel(existing.date)}</p>`, ok:"Xóa", danger:true})){ storeDelete("inc",existing.id); close(); render(); toast("Đã xóa thu nhập"); }
+    }
+  });
+  $("#edForm",wrap).addEventListener("submit",e=>{e.preventDefault();submit()});
+  wrap.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+}
+
+/* ================= Bảng thêm / sửa khoản định kỳ ================= */
+function openRecurringEditor(kind, id=null){
+  const existing = id ? db.recurring.find(r=>r.id===id) : null;
+  if(id && !existing){toast("Không tìm thấy khoản này.");return}
+  kind = existing ? existing.kind : kind;
+  const st = existing ? {...existing} : {kind, name:"", category: kind==="expense"?null:undefined, source: kind==="income"?"salary":undefined, payer: kind==="income"?prefs.defaultPayer:"family", day:1};
+  const isInc=kind==="income";
+  const wrap=sheetShell(existing?(isInc?"Sửa thu nhập định kỳ":"Sửa khoản cố định"):(isInc?"Thêm thu nhập định kỳ":"Thêm khoản cố định"), `
+    <label class="field">Tên<input class="input" id="edName" maxlength="60" autocomplete="off" placeholder="${isInc?"vd: Lương Axiom":"vd: Mortgage, Bảo hiểm xe, Tiền xe"}" value="${esc(st.name)}"></label>
+    <div class="err" id="edErrName"></div>
+    <label class="field">Số tiền mỗi tháng<div class="money-input"><span>$</span><input id="edAmount" inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Số tiền mỗi tháng (USD)" value="${existing?centsToPlain(existing.amountCents):""}"></div></label>
+    <div class="err" id="edErrAmt"></div>
+    <div class="stack" style="gap:8px"><div class="eyebrow">${isInc?"Nguồn thu":"Danh mục"}</div>${isInc?srcChips(st.source):catChips(st.category)}<div class="err" id="edErr_category"></div></div>
+    <div class="stack" style="gap:8px"><div class="eyebrow">${isInc?"Người nhận":"Người trả"}</div>${payerSeg(st.payer)}</div>
+    <label class="field">${isInc?"Ngày nhận":"Ngày đến hạn"} mỗi tháng
+      <select class="input" id="edDay">${Array.from({length:31},(_,i)=>i+1).map(d=>`<option value="${d}"${st.day===d?" selected":""}>Ngày ${d}${d>=29?" (tháng ngắn hơn thì tính ngày cuối tháng)":""}</option>`).join("")}</select></label>
+    <button class="btn primary lg block" type="submit">${existing?"Lưu thay đổi":"Lưu"}</button>
+    ${existing?`<button class="btn danger block" type="button" data-ed="delete">Xóa khoản này</button>`:""}`);
+  bindPick(wrap, st);
+  const close=()=>{ wrap.remove(); document.body.style.overflow=""; };
+  const submit=()=>{
+    const name=$("#edName",wrap).value.trim(); const c=parseCents($("#edAmount",wrap).value);
+    $("#edErrName",wrap).textContent=name?"":"Nhập tên khoản.";
+    $("#edErrAmt",wrap).textContent=c===null?"Nhập số tiền lớn hơn 0.":"";
+    $("#edErr_category",wrap).textContent=(!isInc&&!st.category)?"Chọn một danh mục.":"";
+    if(!name||c===null||(!isInc&&!st.category)) return;
+    const now=new Date().toISOString(); const day=Number($("#edDay",wrap).value);
+    const item={ id: existing?existing.id:uid(), kind, name:name.slice(0,60), amountCents:c, payer:st.payer, day,
+      startMonth: existing?existing.startMonth:ui.month, createdAt: existing?existing.createdAt:now, updatedAt:now };
+    if(isInc) item.source=st.source; else item.category=st.category;
+    storePut("rec", item); toast(existing?"Đã lưu thay đổi":`Đã thêm “${item.name}”`); close(); render();
+  };
+  wrap.addEventListener("click",async e=>{
+    if(e.target===wrap) return close();
+    const a=e.target.closest("[data-ed]"); if(!a) return;
+    if(a.dataset.ed==="cancel") close(); else if(a.dataset.ed==="save") submit();
+    else if(a.dataset.ed==="delete"){
+      if(await confirmDialog({title:`Xóa “${existing.name}”?`, body:`<p>Khoản này sẽ không hiện trong danh sách hằng tháng nữa. Các lần đã ghi vào sổ trước đây vẫn được giữ nguyên.</p>`, ok:"Xóa", danger:true})){ storeDelete("rec",existing.id); close(); render(); toast("Đã xóa"); }
+    }
+  });
+  $("#edForm",wrap).addEventListener("submit",e=>{e.preventDefault();submit()});
+  wrap.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+}
+// Ghi một khoản định kỳ vào sổ của tháng đang xem
+function recordFor(r, mk){
+  const now=new Date().toISOString();
+  const date = mk===monthOf(todayStr()) ? todayStr() : dueDate(mk, r.day);
+  const base={id:uid(), amountCents:r.amountCents, date, payer:r.payer, note:r.name, fixedId:r.id, createdAt:now, updatedAt:now};
+  return r.kind==="income" ? {...base, source:r.source} : {...base, category:r.category};
+}
+
 /* ================= Xuất file ================= */
 const inFrame = (()=>{try{return window.self!==window.top}catch(e){return true}})();
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
@@ -930,9 +1226,14 @@ function buildCSV(list){
   for(const t of sortTx(list).reverse()) rows.push([t.date, centsToPlain(t.amountCents), CAT[t.category].label, PAY[t.payer].label, t.note]);
   return "﻿"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n")+"\r\n";
 }
+function buildIncomeCSV(list){
+  const rows=[["Ngày","Số tiền (USD)","Nguồn thu","Người nhận","Ghi chú"]];
+  for(const t of sortTx(list).reverse()) rows.push([t.date, centsToPlain(t.amountCents), SRC[t.source].label, PAY[t.payer].label, t.note]);
+  return "\uFEFF"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n")+"\r\n";
+}
 function buildBackup(){
-  return JSON.stringify({app:"PocketSpend", format:1, exportedAt:new Date().toISOString(), currency:"USD",
-    transactions:sortTx(db.transactions).reverse(), budgets:db.budgets}, null, 2);
+  return JSON.stringify({app:"PocketSpend", format:2, exportedAt:new Date().toISOString(), currency:"USD",
+    transactions:sortTx(db.transactions).reverse(), budgets:db.budgets, income:sortTx(db.income).reverse(), recurring:db.recurring}, null, 2);
 }
 
 /* ================= Khôi phục ================= */
@@ -940,17 +1241,16 @@ async function handleImport(file){
   let parsed;
   try{ const text=await file.text(); parsed=sanitizeBackup(JSON.parse(text)); }
   catch(e){ await confirmDialog({title:"Không đọc được file", body:`<p>${esc(e.message&&e.message.startsWith("File")?e.message:"File không phải bản sao lưu JSON hợp lệ của PocketSpend.")}</p>`, ok:"Đã hiểu", cancel:"Đóng"}); return; }
-  const inc=parsed.transactions; const curIds=new Set(db.transactions.map(t=>t.id));
-  const newOnes=inc.filter(t=>!curIds.has(t.id));
+  const inc=parsed.transactions; const n=newItemsFrom(parsed); const newOnes=n.transactions;
   const dates=inc.map(t=>t.date).sort();
   const range=dates.length?`${dayLabel(dates[0])} → ${dayLabel(dates[dates.length-1])}`:"không có khoản chi";
-  const summary=`<p>File có <b>${inc.length}</b> khoản chi (${range}) và <b>${Object.keys(parsed.budgets).length}</b> tháng ngân sách.${parsed.skipped?` Bỏ qua ${parsed.skipped} dòng lỗi.`:""}</p>
+  const summary=`<p>File có <b>${inc.length}</b> khoản chi (${range}), <b>${parsed.income.length}</b> khoản thu nhập, <b>${parsed.recurring.length}</b> khoản định kỳ và <b>${Object.keys(parsed.budgets).length}</b> tháng ngân sách.${parsed.skipped?` Bỏ qua ${parsed.skipped} dòng lỗi.`:""}</p>
     <p>${cloud.active?"Sổ chung":"Máy này"} đang có <b>${db.transactions.length}</b> khoản chi. Chưa có gì bị thay đổi.</p>`;
   const choice = await new Promise(resolve=>{
     const wrap=document.createElement("div"); wrap.className="overlay dialog-wrap";
     wrap.innerHTML=`<div class="dialog" role="alertdialog" aria-modal="true"><h3>Khôi phục bản sao lưu</h3>${summary}
       <div class="actions stacked">
-        <button class="btn primary" data-c="merge">Gộp: thêm ${newOnes.length} khoản chưa có</button>
+        <button class="btn primary" data-c="merge">Gộp: thêm ${countNew(n)} mục chưa có</button>
         <button class="btn danger" data-c="replace">Thay thế toàn bộ ${cloud.active?"sổ chung":"dữ liệu trên máy"}</button>
         <button class="btn" data-c="cancel">Hủy</button></div>
       <p class="small muted" style="margin-top:10px">Gộp giữ nguyên dữ liệu hiện tại và ngân sách đã đặt. Thay thế sẽ xóa dữ liệu hiện tại và dùng dữ liệu trong file.</p></div>`;
@@ -964,10 +1264,9 @@ async function handleImport(file){
   }
   try{ localStorage.setItem(UNDO_KEY, JSON.stringify(db)); }catch(e){}
   if(choice==="merge"){
-    const nb={}; for(const [k,v] of Object.entries(parsed.budgets)) if(!db.budgets[k]) nb[k]=v;
-    storeMergeAdd(newOnes, nb); render(); toast(`Đã gộp ${newOnes.length} khoản chi`);
+    storeMergeAdd(n); render(); toast(`Đã gộp ${newOnes.length} khoản chi`);
   } else {
-    storeReplaceAll(inc, parsed.budgets); render(); toast(`Đã khôi phục ${inc.length} khoản chi`);
+    storeReplaceAll(parsed); render(); toast(`Đã khôi phục ${inc.length} khoản chi`);
   }
 }
 
@@ -985,7 +1284,30 @@ document.addEventListener("click", async e=>{
   const a=el.dataset.action;
   if(a==="add") return openEditor();
   if(a==="edit") return openEditor(el.dataset.id);
-  if(a==="goto") return go(el.dataset.tab);
+  if(a==="goto"){ if(el.dataset.seg) ui.planSeg=el.dataset.seg; return go(el.dataset.tab); }
+  if(a==="planSeg"){ ui.planSeg=el.dataset.seg; return render(); }
+  if(a==="addInc") return openIncomeEditor();
+  if(a==="editInc") return openIncomeEditor(el.dataset.id);
+  if(a==="addRec") return openRecurringEditor(el.dataset.kind);
+  if(a==="editRec") return openRecurringEditor(null, el.dataset.id);
+  if(a==="markRec"){
+    const r=db.recurring.find(x=>x.id===el.dataset.id); if(!r) return;
+    if(recRecord(r,ui.month)) return toast("Khoản này đã được ghi trong tháng");
+    const rec=recordFor(r,ui.month); storePut(r.kind==="income"?"inc":"tx", rec); render();
+    return toast(`Đã ghi ${r.name} ${fmt(r.amountCents)}`);
+  }
+  if(a==="markAllRec"){
+    const f=recurringStatus("expense",ui.month); const pend=f.rows.filter(x=>!x.rec).map(x=>x.r);
+    if(!pend.length) return;
+    if(await confirmDialog({title:`Ghi ${pend.length} khoản cố định?`, body:`<p>${pend.map(r=>`${esc(r.name)} <b class="num">${fmt(r.amountCents)}</b>`).join("<br>")}</p><p class="small muted">Tổng ${fmt(sum(pend))} sẽ được ghi vào sổ chi tiêu ${monthLabel(ui.month).toLowerCase()}.</p>`, ok:"Ghi tất cả"})){
+      storeMergeAdd({transactions:pend.map(r=>recordFor(r,ui.month))}); render(); toast(`Đã ghi ${pend.length} khoản cố định`);
+    }
+    return;
+  }
+  if(a==="exportIncomeCSV"){
+    if(!db.income.length) return toast("Chưa có thu nhập nào để xuất");
+    await deliverFile(`pocketspend-thu-nhap-${todayStr()}.csv`, "text/csv;charset=utf-8", buildIncomeCSV(db.income)); return;
+  }
   if(a==="month"){ ui.month=shiftMonth(ui.month, Number(el.dataset.delta)); ui.hist.month=ui.month; return render(); }
   if(a==="histPayer"){ ui.hist.payer=el.dataset.id; return render(); }
   if(a==="defaultPayer"){ prefs.defaultPayer=el.dataset.id; savePrefs(); return render(); }
@@ -1024,13 +1346,13 @@ document.addEventListener("click", async e=>{
     let prev; try{prev=JSON.parse(localStorage.getItem(UNDO_KEY))}catch(e){}
     if(!prev) return toast("Không có gì để hoàn tác");
     if(await confirmDialog({title:"Hoàn tác khôi phục?", body:`<p>Đưa dữ liệu về trạng thái trước lần khôi phục gần nhất (${(prev.transactions||[]).length} khoản chi).</p>`, ok:"Hoàn tác"})){
-      const clean=sanitizeBackup(prev); storeReplaceAll(clean.transactions, clean.budgets); try{localStorage.removeItem(UNDO_KEY)}catch(e){} render(); toast("Đã hoàn tác");
+      const clean=sanitizeBackup(prev); storeReplaceAll(clean); try{localStorage.removeItem(UNDO_KEY)}catch(e){} render(); toast("Đã hoàn tác");
     }
     return;
   }
   if(a==="wipe"){
-    if(await confirmDialog({title:"Xóa toàn bộ dữ liệu?", body:`<p>Xóa ${db.transactions.length} khoản chi và mọi ngân sách ${cloud.active?"<b>trong sổ chung, trên cả hai điện thoại</b>":"trên máy này"}. Nên xuất bản sao lưu trước.</p>`, ok:"Xóa hết", danger:true, requireText:"XÓA"})){
-      storeReplaceAll([], {}); try{localStorage.removeItem(UNDO_KEY)}catch(e){} render(); toast("Đã xóa toàn bộ dữ liệu");
+    if(await confirmDialog({title:"Xóa toàn bộ dữ liệu?", body:`<p>Xóa ${db.transactions.length} khoản chi, ${db.income.length} khoản thu nhập, các khoản định kỳ và mọi ngân sách ${cloud.active?"<b>trong sổ chung, trên cả hai điện thoại</b>":"trên máy này"}. Nên xuất bản sao lưu trước.</p>`, ok:"Xóa hết", danger:true, requireText:"XÓA"})){
+      storeReplaceAll({}); try{localStorage.removeItem(UNDO_KEY)}catch(e){} render(); toast("Đã xóa toàn bộ dữ liệu");
     }
   }
 });
